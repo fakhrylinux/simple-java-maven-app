@@ -7,8 +7,10 @@ node {
         stage('Test') {
             sh 'mvn test'
         }
+        stage('Manual Approval') {
+            input message: 'Lanjutkan ke tahap Deploy?'
+        }
         stage('Deploy') {
-            input message: 'Lanjutkan ke tahap Deploy?' 
             sh './jenkins/scripts/deliver.sh'
         }
     }
